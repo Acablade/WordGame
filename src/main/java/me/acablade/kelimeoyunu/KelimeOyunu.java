@@ -74,7 +74,6 @@ public final class KelimeOyunu extends JavaPlugin {
      * @param gameSet Game that you want to create
      */
     public static void setGame(Game gameSet){
-        if(game != null) return;
         game = gameSet;
     }
 

@@ -47,7 +47,7 @@ public class WordGameCommand implements CommandExecutor, TabExecutor {
                             for(String alias: wc.getLanguage()){
                                 if(args[1].equalsIgnoreCase(alias)){
                                     //Will implement the config later
-                                    Game g = new Game(wc, "/say Game finished the winner is %winner%",null);
+                                    Game g = new Game(wc, "say Game finished the winner is %winner%",null);
                                     KelimeOyunu.setGame(g);
                                     g.start();
                                     sender.sendMessage("§aThe game has started");

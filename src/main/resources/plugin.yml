@@ -1,7 +1,7 @@
 name: KelimeOyunu
 version: ${project.version}
 main: me.acablade.kelimeoyunu.KelimeOyunu
-api-version: 1.16.4
+api-version: 1.16
 authors: [Acablade]
 description: Kelime Oyunu ama Minecraftta!
 permissions:

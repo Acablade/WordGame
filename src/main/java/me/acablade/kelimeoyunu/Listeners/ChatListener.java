@@ -34,6 +34,7 @@ public class ChatListener implements Listener {
                     Pattern pattern = Pattern.compile("([0-9])", Pattern.CASE_INSENSITIVE);
                     Matcher matcher = pattern.matcher(word);
                     boolean matchFound = matcher.find();
+                    //this is a really messy code will clean this up in future
                     if(!matchFound){
                         if(!KelimeOyunu.getGame().getWordChecker().isWord(word)) {
                             player.sendMessage(format("&cPlease write a literal word"));
@@ -41,9 +42,23 @@ public class ChatListener implements Listener {
                         }else{
                             String firstChar = String.valueOf(word.charAt(0));
                             String lastChar = String.valueOf(word.charAt(word.length()-1));
-                            if(firstChar.equalsIgnoreCase(g.getLastChar())){
+                            //if the last char isnt set
+                            if(g.getLastChar().length()==0){
                                 KelimeOyunu.getGame().setPlayer(player,KelimeOyunu.getGame().getWordCount(player.getDisplayName())+1);
                                 g.setLastChar(lastChar);
+                                g.getUsedWordList().add(word);
+                            //if the last char is set
+                            }else if(firstChar.equalsIgnoreCase(g.getLastChar())){
+                                if(!g.getUsedWordList().contains(word)){
+                                    KelimeOyunu.getGame().setPlayer(player,KelimeOyunu.getGame().getWordCount(player.getDisplayName())+1);
+                                    g.setLastChar(lastChar);
+                                    g.getUsedWordList().add(word);
+                                }else{
+                                    player.sendMessage(format("&cThis word has already used before"));
+                                    player.sendMessage(format("&clast character: &e"+g.getLastChar()));
+                                    event.setCancelled(true);
+                                }
+
                             }else{
                                 player.sendMessage(format("&cFirst character must be the same as last character of last word"));
                                 player.sendMessage(format("&clast character: &e"+g.getLastChar()));

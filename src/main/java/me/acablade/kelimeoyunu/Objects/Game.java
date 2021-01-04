@@ -26,6 +26,10 @@ public class Game {
     //How many second the game goes on for (integer might be a bad type for this lol) default: 30
     private final Integer lastingSeconds;
 
+    //Used word list
+    private final List<String> usedWordList;
+
+
     //pretty self explanatory(wont go with enum because the game doesnt have many states)
     private boolean isStarted;
 
@@ -41,8 +45,8 @@ public class Game {
     public Game(WordChecker wordChecker,String gameFinishCommand,Integer lastingSeconds){
         //init variables
         this.gameFinishCommand = gameFinishCommand;
-        //TreeMap to sort the map
-        this.wordCounter = new TreeMap<>();
+        this.wordCounter = new HashMap<>();
+        this.usedWordList = new ArrayList<>();
         this.isStarted = false;
         //might be a bad way to implement this, hit me up on discord if you have better way implementing this
         if(lastingSeconds == null){
@@ -67,9 +71,10 @@ public class Game {
         this.taskId = Bukkit.getScheduler().runTaskLaterAsynchronously(KelimeOyunu.getInstance(),() ->
         {
             //command thing
-            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), gameFinishCommand.replaceAll("%winner%", getWinner()));
+            Bukkit.getScheduler().runTask(KelimeOyunu.getInstance(), () -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), gameFinishCommand.replaceAll("%winner%", getWinner())));
             //self destruct lol
             KelimeOyunu.setGame(null);
+
         }, this.lastingSeconds * 20).getTaskId();
         return true;
     }
@@ -81,15 +86,16 @@ public class Game {
     public String getWinner(){
         //Return if the game hasnt started yet
         if(!isStarted) return null;
-        //yoinked this from https://stackoverflow.com/a/64648401
-        List list = new ArrayList(wordCounter.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-            @Override
-            public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
-                return e1.getValue().compareTo(e2.getValue());
+        int biggestNumber = 0;
+        String playerName = "no one";
+        for(Map.Entry<String, Integer> entry: wordCounter.entrySet()){
+            if(entry.getValue() > biggestNumber){
+                biggestNumber = entry.getValue();
+                playerName = entry.getKey();
             }
-        });
-        return (String) list.get(0);
+        }
+
+        return playerName;
     }
 
     /**
@@ -135,7 +141,7 @@ public class Game {
      * @param lastChar last char of the word of the last message
      */
     public void setLastChar(String lastChar) {
-        this.latestChar = latestChar;
+        this.latestChar = lastChar;
     }
 
     /**
@@ -153,5 +159,13 @@ public class Game {
      */
     public void setPlayer(Player p, int count){
         wordCounter.put(p.getDisplayName(), count);
+    }
+
+    /**
+     * Returns the list of used words in the game
+     * @return list of used words
+     */
+    public List<String> getUsedWordList(){
+        return usedWordList;
     }
 }
