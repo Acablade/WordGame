@@ -1,11 +1,45 @@
 package me.acablade.kelimeoyunu;
 
+import me.acablade.kelimeoyunu.Listeners.ChatListener;
+import me.acablade.kelimeoyunu.Objects.Game;
+import me.acablade.kelimeoyunu.Objects.WordCheckers.EnglishWordChecker;
+import me.acablade.kelimeoyunu.Objects.WordCheckers.TurkishWordChecker;
+import me.acablade.kelimeoyunu.Objects.WordCheckers.WordChecker;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class KelimeOyunu extends JavaPlugin {
 
     private static KelimeOyunu instance;
 
+    //Most likely not the way you want to handle it
+    //But the server will only have one game going only so i dont care lol
+    private static Game game;
+
+    public static WordChecker ENGLISH_WORD_CHECKER;
+    public static WordChecker TURKISH_WORD_CHECKER;
+
+    @Override
+    public void onEnable() {
+        // Plugin startup logic
+        instance = this;
+        TURKISH_WORD_CHECKER = new TurkishWordChecker();
+        ENGLISH_WORD_CHECKER = new EnglishWordChecker();
+
+        //Register listeners
+        getServer().getPluginManager().registerEvents(new ChatListener(), this);
+    }
+
+    @Override
+    public void onDisable() {
+        // Plugin shutdown logic
+
+        //I like to reload a lot thats why i used this
+        HandlerList.unregisterAll(this);
+
+        //Register word checkers
+
+    }
     /**
      * Pretty self explanatory
      * @return instance of this class
@@ -14,14 +48,23 @@ public final class KelimeOyunu extends JavaPlugin {
         return instance;
     }
 
-    @Override
-    public void onEnable() {
-        // Plugin startup logic
-        instance = this;
+    /**
+     * Self explanatory
+     * @return The game thats going on right now
+     */
+    public static Game getGame(){
+        return game;
     }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
+    /**
+     * Set the game
+     * @param gameSet Game that you want to create
+     */
+    public static void setGame(Game gameSet){
+        if(game != null) return;
+        game = gameSet;
     }
+
+    //FOR FUTURE SELF: YOU WANT TO ADD A WAY OF WORD CHECKING AND ADD COMMANDS TO SETUP THE GAME ASWELL DO IT WITH JSON BECAUSE ITS FANCY
+
 }

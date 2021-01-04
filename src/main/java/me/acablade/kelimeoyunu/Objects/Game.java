@@ -3,6 +3,7 @@ package me.acablade.kelimeoyunu.Objects;
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
 import me.acablade.kelimeoyunu.KelimeOyunu;
+import me.acablade.kelimeoyunu.Objects.WordCheckers.WordChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -10,14 +11,19 @@ import java.util.*;
 
 public class Game {
 
-    //Language of the game (not implemented yet)
-    private final Language language;
+    //Word checking and i made that with abstract class to make it look cool B)
+    private WordChecker wordChecker;
 
     // Command that runs when the game finishes
     private final String gameFinishCommand;
 
+    //Latest char of the word
+    String latestChar = "";
+
     //Word counter hashmap to declare who is the winner
-    private Map<Player, Integer> wordCounter;
+    //Used string instead of player or uuid because of cracked servers
+    //its better to use uuid tho
+    private Map<String, Integer> wordCounter;
 
     //How many second the game goes on for (integer might be a bad type for this lol) default: 30
     private final Integer lastingSeconds;
@@ -30,13 +36,12 @@ public class Game {
 
     /**
      * Initialize game
-     * @param language Language of the game
+     * @param wordChecker Word checker
      * @param gameFinishCommand Command that runs when the game finishes
      * @param lastingSeconds How many seconds the game will last
      */
-    public Game(@NotNull Language language,@NotNull String gameFinishCommand, @Nullable Integer lastingSeconds){
+    public Game(@NotNull WordChecker wordChecker,@NotNull String gameFinishCommand, @Nullable Integer lastingSeconds){
         //init variables
-        this.language = language;
         this.gameFinishCommand = gameFinishCommand;
         //TreeMap to sort the map
         this.wordCounter = new TreeMap<>();
@@ -47,6 +52,9 @@ public class Game {
         }else{
             this.lastingSeconds = lastingSeconds;
         }
+
+        //do the word checker bcs its cool
+        this.wordChecker = wordChecker;
     }
 
     /**
@@ -60,7 +68,10 @@ public class Game {
         //Handle the finishing automatically here
         this.taskId = Bukkit.getScheduler().runTaskLaterAsynchronously(KelimeOyunu.getInstance(),() ->
         {
-            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), gameFinishCommand.replaceAll("%winner%", getWinner().getDisplayName()));
+            //command thing
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), gameFinishCommand.replaceAll("%winner%", getWinner()));
+            //self destruct lol
+            KelimeOyunu.setGame(null);
         }, this.lastingSeconds * 20).getTaskId();
         return true;
     }
@@ -69,20 +80,67 @@ public class Game {
      * Get winner of the game (player who has the most words written)
      * @return Player that wins the game
      */
-    public Player getWinner(){
+    public String getWinner(){
         //Return if the game hasnt started yet
         if(!isStarted) return null;
         //yoinked this from https://stackoverflow.com/a/64648401
         List list = new ArrayList(wordCounter.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<Player, Integer>>() {
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
             @Override
-            public int compare(Map.Entry<Player, Integer> e1, Map.Entry<Player, Integer> e2) {
+            public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
                 return e1.getValue().compareTo(e2.getValue());
             }
         });
-        return (Player) list.get(0);
+        return (String) list.get(0);
     }
 
+    /**
+     * Get word count of a player
+     * @param p Player that you want to get count of
+     * @return Player's word count
+     */
+    public Integer getWordCount(String p){
+        //if the player hasnt written anything (might not need this not quite sure)
+        if(!this.wordCounter.containsKey(p)) return 0;
+        return this.wordCounter.get(p);
+    }
 
+    //implement this
+    public boolean finish(){
+        return false;
+    }
 
+    /**
+     * Is the game started
+     * @return is game started
+     */
+    public boolean isStarted(){
+        return isStarted;
+    }
+    //Wont do set method because i handle that in the start method and the task that finishes the game
+    //Might add that later
+
+    /**
+     * Get word checker
+     * @return word checker of the specified language
+     */
+    public WordChecker getWordChecker(){
+        return this.wordChecker;
+    }
+
+    /**
+     * Set last char
+     * @param lastChar last char of the word of the last message
+     */
+    public void setLastChar(String lastChar) {
+        this.latestChar = latestChar;
+    }
+
+    /**
+     * Get last char of the word of the last message
+     * @return last char of the word of the last message
+     */
+    public String getLastChar() {
+        return latestChar;
+    }
 }
