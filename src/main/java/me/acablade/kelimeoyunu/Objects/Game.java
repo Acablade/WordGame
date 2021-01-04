@@ -3,6 +3,7 @@ package me.acablade.kelimeoyunu.Objects;
 import me.acablade.kelimeoyunu.KelimeOyunu;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.WordChecker;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.util.*;
 
@@ -143,5 +144,14 @@ public class Game {
      */
     public String getLastChar() {
         return latestChar;
+    }
+
+    /**
+     * Set player's word count
+     * @param p player you want to add to list
+     * @param count the amount of words you want to add
+     */
+    public void setPlayer(Player p, int count){
+        wordCounter.put(p.getDisplayName(), count);
     }
 }

@@ -13,19 +13,18 @@ Currently only supports Turkish
 **ITS STILL UNDER DEVELOPMENT AND NOT YET RELEASED**
 
 TODO:
-- [ ] Add config 
-- [ ] Add support for other languages 
+- [X] Add config 
 - [ ] Make commands fancy
-- [ ] Make an api so any developer can add any language they like
 
 FEATURES:
 
-- Word checking via API of TDK(Türk Dil Kurumu)
+- Word checking via API of Dictionary sites
 - Permissions
 - Commands (not yet fancy but will be in future)
+- Make an api so any developer can add any language they like
 
 LANGUAGES:
-- Turkish
-- English (implementing)
+- Turkish | Done
+- English | Done but didnt test
 
 Discord: oz#4795 if you want to talk to me about this project.
