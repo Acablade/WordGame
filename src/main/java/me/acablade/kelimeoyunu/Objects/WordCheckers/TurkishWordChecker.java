@@ -41,4 +41,9 @@ public class TurkishWordChecker extends WordChecker{
             return false;
         }
     }
+
+    @Override
+    public String[] getLanguage() {
+        return new String[]{"TURKISH", "TR", "TURKEY"};
+    }
 }

@@ -5,6 +5,7 @@ import me.acablade.kelimeoyunu.Objects.Game;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.EnglishWordChecker;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.TurkishWordChecker;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.WordChecker;
+import me.acablade.kelimeoyunu.Objects.WordCheckers.WordCheckerManager;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,12 +20,15 @@ public final class KelimeOyunu extends JavaPlugin {
     public static WordChecker ENGLISH_WORD_CHECKER;
     public static WordChecker TURKISH_WORD_CHECKER;
 
+    public static WordCheckerManager wordCheckerManager;
+
     @Override
     public void onEnable() {
         // Plugin startup logic
         instance = this;
-        TURKISH_WORD_CHECKER = new TurkishWordChecker();
-        ENGLISH_WORD_CHECKER = new EnglishWordChecker();
+        wordCheckerManager = new WordCheckerManager();
+        TURKISH_WORD_CHECKER = wordCheckerManager.register(new TurkishWordChecker());
+        ENGLISH_WORD_CHECKER = wordCheckerManager.register(new EnglishWordChecker());
 
         //Register listeners
         getServer().getPluginManager().registerEvents(new ChatListener(), this);

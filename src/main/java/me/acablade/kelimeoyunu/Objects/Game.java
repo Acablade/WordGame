@@ -104,7 +104,11 @@ public class Game {
 
     //implement this
     public boolean finish(){
-        return false;
+        if(!isStarted) return false;
+        KelimeOyunu.setGame(null);
+        Bukkit.getScheduler().cancelTask(this.taskId);
+        isStarted = false;
+        return true;
     }
 
     /**

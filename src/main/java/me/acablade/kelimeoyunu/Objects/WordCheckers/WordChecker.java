@@ -6,4 +6,6 @@ public abstract class WordChecker {
 
     public abstract boolean isWord(String word) throws IOException;
 
+    public abstract String[] getLanguage();
+
 }
