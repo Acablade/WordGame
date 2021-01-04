@@ -45,8 +45,8 @@ public class ChatListener implements Listener {
                                 KelimeOyunu.getGame().setPlayer(player,KelimeOyunu.getGame().getWordCount(player.getDisplayName())+1);
                                 g.setLastChar(lastChar);
                             }else{
-                                player.sendMessage(format("&cFirst char must be the same as last char"));
-                                player.sendMessage(format("&clast char: &e"+g.getLastChar()));
+                                player.sendMessage(format("&cFirst character must be the same as last character of last word"));
+                                player.sendMessage(format("&clast character: &e"+g.getLastChar()));
                                 event.setCancelled(true);
                             }
                         }
