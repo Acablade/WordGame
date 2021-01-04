@@ -1,11 +1,8 @@
 package me.acablade.kelimeoyunu.Objects;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
 import me.acablade.kelimeoyunu.KelimeOyunu;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.WordChecker;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 import java.util.*;
 
@@ -40,7 +37,7 @@ public class Game {
      * @param gameFinishCommand Command that runs when the game finishes
      * @param lastingSeconds How many seconds the game will last
      */
-    public Game(@NotNull WordChecker wordChecker,@NotNull String gameFinishCommand, @Nullable Integer lastingSeconds){
+    public Game(WordChecker wordChecker,String gameFinishCommand,Integer lastingSeconds){
         //init variables
         this.gameFinishCommand = gameFinishCommand;
         //TreeMap to sort the map
