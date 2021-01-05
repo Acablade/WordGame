@@ -3,6 +3,7 @@ package me.acablade.kelimeoyunu;
 import me.acablade.kelimeoyunu.Commands.WordGameCommand;
 import me.acablade.kelimeoyunu.Listeners.ChatListener;
 import me.acablade.kelimeoyunu.Objects.Game;
+import me.acablade.kelimeoyunu.Objects.MessageConfiguration;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.EnglishWordChecker;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.TurkishWordChecker;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.WordChecker;
@@ -42,6 +43,10 @@ public final class KelimeOyunu extends JavaPlugin {
         PluginCommand cmd = getCommand("wordgame");
         cmd.setExecutor(wgc);
         cmd.setTabCompleter(wgc);
+
+        //Create messages.yml
+        MessageConfiguration.createCustomConfig();
+
     }
 
     @Override

@@ -15,14 +15,11 @@ public class EnglishWordChecker extends WordChecker{
     @Override
     public boolean isWord(String word) throws IOException {
 
-        //https://wordsapiv1.p.mashape.com/words/hello
-
         URL obj = new URL("https://wordsapiv1.p.mashape.com/words/"+word);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
         int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     con.getInputStream()));

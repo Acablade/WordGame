@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static me.acablade.kelimeoyunu.Utils.Colorizer.format;
+import static me.acablade.kelimeoyunu.Utils.ConfigMessages.getFormattedString;
 
 public class ChatListener implements Listener {
 
@@ -34,10 +35,10 @@ public class ChatListener implements Listener {
                     Pattern pattern = Pattern.compile("([0-9])", Pattern.CASE_INSENSITIVE);
                     Matcher matcher = pattern.matcher(word);
                     boolean matchFound = matcher.find();
-                    //this is a really messy code will clean this up in future
+                    //this is part is just a whole mess
                     if(!matchFound){
                         if(!KelimeOyunu.getGame().getWordChecker().isWord(word)) {
-                            player.sendMessage(format("&cPlease write a literal word"));
+                            player.sendMessage(format(getFormattedString("wordgame.error.not_a_word")));
                             event.setCancelled(true);
                         }else{
                             String firstChar = String.valueOf(word.charAt(0));
@@ -54,24 +55,22 @@ public class ChatListener implements Listener {
                                     g.setLastChar(lastChar);
                                     g.getUsedWordList().add(word);
                                 }else{
-                                    player.sendMessage(format("&cThis word has already used before"));
-                                    player.sendMessage(format("&clast character: &e"+g.getLastChar()));
+                                    player.sendMessage(format(getFormattedString("wordgame.error.already_used_word")));
                                     event.setCancelled(true);
                                 }
 
                             }else{
-                                player.sendMessage(format("&cFirst character must be the same as last character of last word"));
-                                player.sendMessage(format("&clast character: &e"+g.getLastChar()));
+                                player.sendMessage(format(getFormattedString("wordgame.error.wrong_first_character")));
                                 event.setCancelled(true);
                             }
                         }
                     }else{
-                        player.sendMessage(format("&cDon't include numbers in the word"));
+                        player.sendMessage(format(getFormattedString("wordgame.error.numbers_in_word")));
                         event.setCancelled(true);
                     }
                 }else{
                     if(!player.hasPermission("wordgame.bypass")){
-                        player.sendMessage(format("&cOnly one word is acceptable"));
+                        player.sendMessage(format(getFormattedString("wordgame.error.multiple_words")));
                         event.setCancelled(true);
                     }
                 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static me.acablade.kelimeoyunu.Utils.Colorizer.format;
+import static me.acablade.kelimeoyunu.Utils.ConfigMessages.getFormattedString;
 
 public class WordGameCommand implements CommandExecutor, TabExecutor {
     @Override
@@ -23,7 +24,7 @@ public class WordGameCommand implements CommandExecutor, TabExecutor {
             if(player.hasPermission("wordgame.game")){
                 handleGameCommand(sender,args);
             }else{
-                player.sendMessage("§cInsufficient permissions");
+                player.sendMessage(format(getFormattedString("wordgame.error.permission")));
             }
         }else{
             handleGameCommand(sender,args);
@@ -36,7 +37,7 @@ public class WordGameCommand implements CommandExecutor, TabExecutor {
     //Do the method here so there is no duplicates and it looks nice
     public void handleGameCommand(CommandSender sender,String[] args){
         if(args.length == 0){
-            sender.sendMessage(format("&aCommand usage: /wordgame [start/help]"));
+            sender.sendMessage(format(getFormattedString("wordgame.error.syntax")));
         }else{
             if(args[0].equalsIgnoreCase("start")){
                 if(args.length == 2){
@@ -47,21 +48,21 @@ public class WordGameCommand implements CommandExecutor, TabExecutor {
                             for(String alias: wc.getLanguage()){
                                 if(args[1].equalsIgnoreCase(alias)){
                                     //Will implement the config later
-                                    Game g = new Game(wc, "say Game finished the winner is %winner%",null);
+                                    Game g = new Game(wc, getFormattedString("wordgame.command_on_finish"),null);
                                     KelimeOyunu.setGame(g);
                                     g.start();
-                                    sender.sendMessage("§aThe game has started");
+                                    sender.sendMessage(format(getFormattedString("gameword.messages.game_started")));
                                 }
                             }
                         }
                     }else{
-                        sender.sendMessage("§cThere is already a game going on!");
+                        sender.sendMessage(format(getFormattedString("gameword.error.game_already_started")));
                     }
                 }else{
-                    sender.sendMessage(format("&aCommand usage: /wordgame start [langs]"));
+                    sender.sendMessage(format(getFormattedString("gameword.error.syntax")));
                 }
             }else if(args[0].equalsIgnoreCase("help")){
-                sender.sendMessage(format("&aCommand usage: /wordgame [start/help]"));
+                sender.sendMessage(format(getFormattedString("gameword.error.syntax")));
             }
         }
 

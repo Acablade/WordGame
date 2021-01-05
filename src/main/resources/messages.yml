@@ -1,0 +1,24 @@
+wordgame:
+  #Do the command without slash
+  command_on_finish: 'say Winner is %winner%'
+  messages:
+    game_started: '&aThe game has started'
+    #when no one one the game/no one wrote anything
+    no_one: 'no one'
+  error:
+    #If the player has no permissions
+    permission: '&cInsufficient permissions'
+    #If there is already a game going on
+    game_already_started: '&cThere is already a game going on'
+    #If the written text isnt a word f.e. sakdhawd
+    not_a_word: '&cPlease write a literal word'
+    #\n = line break
+    #If the word the player wrote is already had written before
+    already_used_word: '&cThis word was already used before\n&clast character: &e%lastChar%'
+    #If the written word doesnt start with the last character of the last word
+    wrong_first_character: '&cFirst character must be the same as last character of last word\n&clast character: &e%lastChar%'
+    #If there are numbers in word f.e. exe12
+    numbers_in_word: "&cDon't include numbers in the word"
+    #If there are more than one word
+    multiple_words: "&cOnly one word is acceptable"
+    syntax: "&aCommand usage: /wordgame [start/help]"

@@ -2,6 +2,7 @@ package me.acablade.kelimeoyunu.Objects;
 
 import me.acablade.kelimeoyunu.KelimeOyunu;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.WordChecker;
+import me.acablade.kelimeoyunu.Utils.ConfigMessages;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -71,7 +72,7 @@ public class Game {
         this.taskId = Bukkit.getScheduler().runTaskLaterAsynchronously(KelimeOyunu.getInstance(),() ->
         {
             //command thing
-            Bukkit.getScheduler().runTask(KelimeOyunu.getInstance(), () -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), gameFinishCommand.replaceAll("%winner%", getWinner())));
+            Bukkit.getScheduler().runTask(KelimeOyunu.getInstance(), () -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), gameFinishCommand));
             //self destruct lol
             KelimeOyunu.setGame(null);
 
@@ -87,7 +88,7 @@ public class Game {
         //Return if the game hasnt started yet
         if(!isStarted) return null;
         int biggestNumber = 0;
-        String playerName = "no one";
+        String playerName = ConfigMessages.getFormattedString("wordgame.messages.no_one");
         for(Map.Entry<String, Integer> entry: wordCounter.entrySet()){
             if(entry.getValue() > biggestNumber){
                 biggestNumber = entry.getValue();
