@@ -30,7 +30,7 @@ LANGUAGES:
 - Turkish
 - English
 
-####How does the word recognition work?
+###How does the word recognition work?
 It takes the word written in chat and sends a GET request to a dictionary api and returns the value in boolean
 
 
