@@ -1,43 +1,23 @@
 package me.acablade.kelimeoyunu.Objects.WordCheckers;
 
-import me.acablade.kelimeoyunu.KelimeOyunu;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.google.common.net.HttpHeaders.USER_AGENT;
 
-public class EnglishWordChecker extends WordChecker{
+public class EnglishWordChecker implements IWordChecker {
     @Override
     public boolean isWord(String word) throws IOException {
 
-        URL obj = new URL("https://wordsapiv1.p.mashape.com/words/"+word);
+        URL obj = new URL("https://www.wordsapi.com/mashape/words/"+word+"?when=2021-01-05T14:13:47.097Z&encrypted=8cfdb18be722929bea9407beeb58bfbaaeb42a0930f690b8");
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
         int responseCode = con.getResponseCode();
-        if (responseCode == HttpURLConnection.HTTP_OK) { // success
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                    con.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            if(response.toString().contains("error")){
-                return false;
-            }
+        if (responseCode == HttpURLConnection.HTTP_OK || responseCode == 304) { // success
             return true;
-        } else {
-            //Cant connect, finish the game
-            KelimeOyunu.getGame().finish();
+        }else{
             return false;
         }
     }

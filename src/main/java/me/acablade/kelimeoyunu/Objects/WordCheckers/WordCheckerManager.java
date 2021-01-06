@@ -5,23 +5,23 @@ import java.util.List;
 
 public class WordCheckerManager {
 
-    List<WordChecker> wordCheckerList;
+    List<IWordChecker> IWordCheckerList;
 
 
     public WordCheckerManager(){
         //Init variables
-        this.wordCheckerList = new ArrayList<>();
+        this.IWordCheckerList = new ArrayList<>();
     }
 
     /**
      * Register word checks
-     * @param wordChecker Word Checker that is going to be registered
+     * @param IWordChecker Word Checker that is going to be registered
      * @return Word checker so the dev can apply it to a variable
      */
-    public WordChecker register(WordChecker wordChecker){
-        if(getWordCheckerList().contains(wordChecker)) return null;
-        getWordCheckerList().add(wordChecker);
-        return wordChecker;
+    public IWordChecker register(IWordChecker IWordChecker){
+        if(getIWordCheckerList().contains(IWordChecker)) return null;
+        getIWordCheckerList().add(IWordChecker);
+        return IWordChecker;
     }
 
     /**
@@ -29,24 +29,24 @@ public class WordCheckerManager {
      * @param index index to be unregistered
      */
     public void unregister(int index){
-        if(getWordCheckerList().size() <= index) return;
-        getWordCheckerList().remove(index);
+        if(getIWordCheckerList().size() <= index) return;
+        getIWordCheckerList().remove(index);
     }
 
     /**
      * Unregisters the specified word checker
-     * @param wordChecker word checker that wanted to be removed
+     * @param IWordChecker word checker that wanted to be removed
      */
-    public void unregister(WordChecker wordChecker){
-        if(!getWordCheckerList().contains(wordChecker)) return;
-        getWordCheckerList().remove(wordChecker);
+    public void unregister(IWordChecker IWordChecker){
+        if(!getIWordCheckerList().contains(IWordChecker)) return;
+        getIWordCheckerList().remove(IWordChecker);
     }
 
     /**
      * Returns all registered word checkers
      * @return word checker list
      */
-    public List<WordChecker> getWordCheckerList() {
-        return wordCheckerList;
+    public List<IWordChecker> getIWordCheckerList() {
+        return IWordCheckerList;
     }
 }

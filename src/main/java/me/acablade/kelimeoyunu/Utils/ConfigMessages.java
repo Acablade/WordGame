@@ -2,7 +2,6 @@ package me.acablade.kelimeoyunu.Utils;
 
 import me.acablade.kelimeoyunu.KelimeOyunu;
 import me.acablade.kelimeoyunu.Objects.MessageConfiguration;
-import org.bukkit.ChatColor;
 
 public class ConfigMessages {
 
@@ -15,8 +14,15 @@ public class ConfigMessages {
 
         String config_text = MessageConfiguration.getCustomConfig().getString(text);
 
-        return config_text.replaceAll("%winner%", KelimeOyunu.getGame().getWinner())
-                .replaceAll("%lastChar%", KelimeOyunu.getGame().getLastChar());
+        if(KelimeOyunu.getGame() !=  null){
+            config_text.
+                    replaceAll("%winner%",KelimeOyunu.getGame().getWinner()).
+                    replaceAll("%lastChar%", KelimeOyunu.getGame().getLastChar()).
+                    replaceAll("%language%", KelimeOyunu.getGame().getIWordChecker().getLanguage()[0]);
+        }
+
+
+        return config_text;
     }
 
 }

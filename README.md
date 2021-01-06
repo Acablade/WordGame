@@ -12,19 +12,23 @@ Currently only supports Turkish
 
 **ITS STILL UNDER DEVELOPMENT AND NOT YET RELEASED**
 
+
+**DOES NOT SUPPORT PLACEHOLDER API YET**
+
 TODO:
-- [X] Add config 
 - [ ] Make commands fancy
+- [ ] PlaceholderAPI support
 
 FEATURES:
 
 - Word checking via API of Dictionary sites
 - Permissions
-- Commands (not yet fancy but will be in future)
-- Make an api so any developer can add any language they like
+- Commands (not fancy yet but will be in future)
+- API
+- Config
 
 LANGUAGES:
-- Turkish | Done
-- English | Done but didnt test
+- Turkish
+- English
 
 Discord: oz#4795 if you want to talk to me about this project.

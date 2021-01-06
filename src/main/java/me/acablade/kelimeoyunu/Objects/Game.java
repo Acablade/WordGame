@@ -1,8 +1,7 @@
 package me.acablade.kelimeoyunu.Objects;
 
 import me.acablade.kelimeoyunu.KelimeOyunu;
-import me.acablade.kelimeoyunu.Objects.WordCheckers.WordChecker;
-import me.acablade.kelimeoyunu.Utils.ConfigMessages;
+import me.acablade.kelimeoyunu.Objects.WordCheckers.IWordChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -11,7 +10,7 @@ import java.util.*;
 public class Game {
 
     //Word checking and i made that with abstract class to make it look cool B)
-    private WordChecker wordChecker;
+    private IWordChecker IWordChecker;
 
     // Command that runs when the game finishes
     private final String gameFinishCommand;
@@ -39,11 +38,11 @@ public class Game {
 
     /**
      * Initialize game
-     * @param wordChecker Word checker
+     * @param IWordChecker Word checker
      * @param gameFinishCommand Command that runs when the game finishes
      * @param lastingSeconds How many seconds the game will last
      */
-    public Game(WordChecker wordChecker,String gameFinishCommand,Integer lastingSeconds){
+    public Game(IWordChecker IWordChecker, String gameFinishCommand, Integer lastingSeconds){
         //init variables
         this.gameFinishCommand = gameFinishCommand;
         this.wordCounter = new HashMap<>();
@@ -57,7 +56,7 @@ public class Game {
         }
 
         //do the word checker bcs its cool
-        this.wordChecker = wordChecker;
+        this.IWordChecker = IWordChecker;
     }
 
     /**
@@ -72,7 +71,7 @@ public class Game {
         this.taskId = Bukkit.getScheduler().runTaskLaterAsynchronously(KelimeOyunu.getInstance(),() ->
         {
             //command thing
-            Bukkit.getScheduler().runTask(KelimeOyunu.getInstance(), () -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), gameFinishCommand));
+            Bukkit.getScheduler().runTask(KelimeOyunu.getInstance(), () -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), gameFinishCommand.replaceAll("%winner%", getWinner()).replaceAll("%lastChar%",getLastChar())));
             //self destruct lol
             KelimeOyunu.setGame(null);
 
@@ -88,7 +87,7 @@ public class Game {
         //Return if the game hasnt started yet
         if(!isStarted) return null;
         int biggestNumber = 0;
-        String playerName = ConfigMessages.getFormattedString("wordgame.messages.no_one");
+        String playerName = MessageConfiguration.getCustomConfig().getString("wordgame.messages.no_one");
         for(Map.Entry<String, Integer> entry: wordCounter.entrySet()){
             if(entry.getValue() > biggestNumber){
                 biggestNumber = entry.getValue();
@@ -133,8 +132,8 @@ public class Game {
      * Get word checker
      * @return word checker of the specified language
      */
-    public WordChecker getWordChecker(){
-        return this.wordChecker;
+    public IWordChecker getWordChecker(){
+        return this.IWordChecker;
     }
 
     /**

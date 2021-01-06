@@ -6,7 +6,7 @@ import me.acablade.kelimeoyunu.Objects.Game;
 import me.acablade.kelimeoyunu.Objects.MessageConfiguration;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.EnglishWordChecker;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.TurkishWordChecker;
-import me.acablade.kelimeoyunu.Objects.WordCheckers.WordChecker;
+import me.acablade.kelimeoyunu.Objects.WordCheckers.IWordChecker;
 import me.acablade.kelimeoyunu.Objects.WordCheckers.WordCheckerManager;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.HandlerList;
@@ -20,8 +20,8 @@ public final class KelimeOyunu extends JavaPlugin {
     //But the server will only have one game going only so i dont care lol
     private static Game game;
 
-    public static WordChecker ENGLISH_WORD_CHECKER;
-    public static WordChecker TURKISH_WORD_CHECKER;
+    public static IWordChecker ENGLISH_WORD_CHECKER;
+    public static IWordChecker TURKISH_WORD_CHECKER;
 
     public static WordCheckerManager wordCheckerManager;
 

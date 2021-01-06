@@ -2,7 +2,8 @@ package me.acablade.kelimeoyunu.Commands;
 
 import me.acablade.kelimeoyunu.KelimeOyunu;
 import me.acablade.kelimeoyunu.Objects.Game;
-import me.acablade.kelimeoyunu.Objects.WordCheckers.WordChecker;
+import me.acablade.kelimeoyunu.Objects.WordCheckers.IWordChecker;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -39,30 +40,28 @@ public class WordGameCommand implements CommandExecutor, TabExecutor {
         if(args.length == 0){
             sender.sendMessage(format(getFormattedString("wordgame.error.syntax")));
         }else{
-            if(args[0].equalsIgnoreCase("start")){
-                if(args.length == 2){
+            if(args.length == 2){
+                if(args[0].equalsIgnoreCase("start")){
                     if(KelimeOyunu.getGame()==null){
                         //again feel free to hit me up on discord to optimize this code
                         //it shouldnt do much problem since its only used in command
-                        for(WordChecker wc: KelimeOyunu.wordCheckerManager.getWordCheckerList()){
+                        for(IWordChecker wc: KelimeOyunu.wordCheckerManager.getIWordCheckerList()){
                             for(String alias: wc.getLanguage()){
                                 if(args[1].equalsIgnoreCase(alias)){
-                                    //Will implement the config later
                                     Game g = new Game(wc, getFormattedString("wordgame.command_on_finish"),null);
                                     KelimeOyunu.setGame(g);
                                     g.start();
-                                    sender.sendMessage(format(getFormattedString("gameword.messages.game_started")));
+                                    Bukkit.getOnlinePlayers().stream().forEach((p) -> p.sendMessage(format(getFormattedString("wordgame.messages.game_started"))));
+                                    sender.sendMessage(format(getFormattedString("wordgame.messages.game_started")));
                                 }
                             }
                         }
                     }else{
-                        sender.sendMessage(format(getFormattedString("gameword.error.game_already_started")));
+                        sender.sendMessage(format(getFormattedString("wordgame.error.game_already_started")));
                     }
-                }else{
-                    sender.sendMessage(format(getFormattedString("gameword.error.syntax")));
                 }
-            }else if(args[0].equalsIgnoreCase("help")){
-                sender.sendMessage(format(getFormattedString("gameword.error.syntax")));
+            }else{
+                sender.sendMessage(format(getFormattedString("wordgame.error.syntax")));
             }
         }
 
@@ -72,8 +71,8 @@ public class WordGameCommand implements CommandExecutor, TabExecutor {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> tabComplete = new ArrayList<>();
         if(args.length == 2){
-            for(WordChecker wordChecker: KelimeOyunu.wordCheckerManager.getWordCheckerList()){
-                for(String aliases: wordChecker.getLanguage()){
+            for(IWordChecker IWordChecker : KelimeOyunu.wordCheckerManager.getIWordCheckerList()){
+                for(String aliases: IWordChecker.getLanguage()){
                     if(aliases.startsWith(args[1])){
                         tabComplete.add(aliases);
                     }

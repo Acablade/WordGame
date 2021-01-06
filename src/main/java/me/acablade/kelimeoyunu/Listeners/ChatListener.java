@@ -35,7 +35,7 @@ public class ChatListener implements Listener {
                     Pattern pattern = Pattern.compile("([0-9])", Pattern.CASE_INSENSITIVE);
                     Matcher matcher = pattern.matcher(word);
                     boolean matchFound = matcher.find();
-                    //this is part is just a whole mess
+                    //this part is just a whole mess
                     if(!matchFound){
                         if(!KelimeOyunu.getGame().getWordChecker().isWord(word)) {
                             player.sendMessage(format(getFormattedString("wordgame.error.not_a_word")));
