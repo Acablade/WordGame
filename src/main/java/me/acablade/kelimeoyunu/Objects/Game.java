@@ -68,10 +68,12 @@ public class Game {
         if(this.isStarted) return false;
         this.isStarted = true;
         //Handle the finishing automatically here
+        String formattedCommand = gameFinishCommand.replaceAll("%winner%", getWinner()).replaceAll("%lastChar%",getLastChar());
+        String finishCommand = formattedCommand.startsWith("/") ? formattedCommand.substring(1) : formattedCommand;
         this.taskId = Bukkit.getScheduler().runTaskLaterAsynchronously(KelimeOyunu.getInstance(),() ->
         {
             //command thing
-            Bukkit.getScheduler().runTask(KelimeOyunu.getInstance(), () -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), gameFinishCommand.replaceAll("%winner%", getWinner()).replaceAll("%lastChar%",getLastChar())));
+            Bukkit.getScheduler().runTask(KelimeOyunu.getInstance(), () -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), finishCommand));
             //self destruct lol
             KelimeOyunu.setGame(null);
 

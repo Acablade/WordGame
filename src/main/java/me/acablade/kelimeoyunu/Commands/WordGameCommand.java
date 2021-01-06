@@ -52,7 +52,11 @@ public class WordGameCommand implements CommandExecutor, TabExecutor {
                                     Game g = new Game(wc, getFormattedString("wordgame.command_on_finish"),null);
                                     KelimeOyunu.setGame(g);
                                     g.start();
-                                    Bukkit.getOnlinePlayers().forEach((p) -> p.sendMessage(format(getFormattedString("wordgame.messages.game_started"))));
+                                    Bukkit.getOnlinePlayers().forEach((p) -> {
+                                        if(p!=(Player) sender){
+                                            p.sendMessage(format(getFormattedString("wordgame.messages.game_started")));
+                                        }
+                                    });
                                     sender.sendMessage(format(getFormattedString("wordgame.messages.game_started")));
                                 }
                             }
