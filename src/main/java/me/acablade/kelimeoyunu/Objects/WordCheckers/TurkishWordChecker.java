@@ -23,17 +23,13 @@ public class TurkishWordChecker implements IWordChecker {
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     con.getInputStream()));
             String inputLine;
-            StringBuffer response = new StringBuffer();
+            StringBuilder response = new StringBuilder();
 
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }
             in.close();
-
-            if(response.toString().contains("error")){
-                return false;
-            }
-            return true;
+            return !response.toString().contains("error");
         } else {
             //Cant connect, finish the game
             KelimeOyunu.getGame().finish();

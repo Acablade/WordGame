@@ -19,8 +19,8 @@ public class WordCheckerManager {
      * @return Word checker so the dev can apply it to a variable
      */
     public IWordChecker register(IWordChecker IWordChecker){
-        if(getIWordCheckerList().contains(IWordChecker)) return null;
-        getIWordCheckerList().add(IWordChecker);
+        if(getWordCheckerList().contains(IWordChecker)) return null;
+        getWordCheckerList().add(IWordChecker);
         return IWordChecker;
     }
 
@@ -29,8 +29,8 @@ public class WordCheckerManager {
      * @param index index to be unregistered
      */
     public void unregister(int index){
-        if(getIWordCheckerList().size() <= index) return;
-        getIWordCheckerList().remove(index);
+        if(getWordCheckerList().size() <= index) return;
+        getWordCheckerList().remove(index);
     }
 
     /**
@@ -38,15 +38,15 @@ public class WordCheckerManager {
      * @param IWordChecker word checker that wanted to be removed
      */
     public void unregister(IWordChecker IWordChecker){
-        if(!getIWordCheckerList().contains(IWordChecker)) return;
-        getIWordCheckerList().remove(IWordChecker);
+        if(!getWordCheckerList().contains(IWordChecker)) return;
+        getWordCheckerList().remove(IWordChecker);
     }
 
     /**
      * Returns all registered word checkers
      * @return word checker list
      */
-    public List<IWordChecker> getIWordCheckerList() {
+    public List<IWordChecker> getWordCheckerList() {
         return IWordCheckerList;
     }
 }

@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class MessageConfiguration {
 
-    private static File customConfigFile;
     private static FileConfiguration customConfig;
 
     public static FileConfiguration getCustomConfig() {
@@ -18,7 +17,7 @@ public class MessageConfiguration {
     }
 
     public static void createCustomConfig() {
-        customConfigFile = new File(KelimeOyunu.getInstance().getDataFolder(), "messages.yml");
+        File customConfigFile = new File(KelimeOyunu.getInstance().getDataFolder(), "messages.yml");
         if (!customConfigFile.exists()) {
             customConfigFile.getParentFile().mkdirs();
             KelimeOyunu.getInstance().saveResource("messages.yml", false);

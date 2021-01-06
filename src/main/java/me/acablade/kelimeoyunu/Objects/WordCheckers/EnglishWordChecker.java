@@ -15,11 +15,7 @@ public class EnglishWordChecker implements IWordChecker {
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
         int responseCode = con.getResponseCode();
-        if (responseCode == HttpURLConnection.HTTP_OK || responseCode == 304) { // success
-            return true;
-        }else{
-            return false;
-        }
+        return responseCode == HttpURLConnection.HTTP_OK || responseCode == 304;
     }
 
     @Override

@@ -15,10 +15,11 @@ public class ConfigMessages {
         String config_text = MessageConfiguration.getCustomConfig().getString(text);
 
         if(KelimeOyunu.getGame() !=  null){
+            assert config_text != null;
             config_text.
                     replaceAll("%winner%",KelimeOyunu.getGame().getWinner()).
                     replaceAll("%lastChar%", KelimeOyunu.getGame().getLastChar()).
-                    replaceAll("%language%", KelimeOyunu.getGame().getIWordChecker().getLanguage()[0]);
+                    replaceAll("%language%", KelimeOyunu.getGame().getWordChecker().getLanguage()[0]);
         }
 
 
