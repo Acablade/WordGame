@@ -11,7 +11,7 @@ public class WordGameAPIExample extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        //You add it to manager like this (returns IWordChecker so if you want to do anything in the future you can)
+        //You add it to manager like this (returns IWordChecker)
         wordChecker = KelimeOyunu.wordCheckerManager.register(new ExampleWordChecker());
     }
 
