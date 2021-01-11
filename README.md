@@ -33,6 +33,6 @@ LANGUAGES:
 **How does the word recognition work?**
 It takes the word written in chat and sends a GET request to a dictionary api and returns the value in boolean
 
-
+**Example file isnt included in project build**
 
 Discord: oz#4795 if you want to talk to me about this project.
