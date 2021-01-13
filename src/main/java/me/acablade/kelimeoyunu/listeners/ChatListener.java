@@ -30,7 +30,7 @@ public class ChatListener implements Listener {
         
         if (words.length != 1) {
             if(!player.hasPermission("wordgame.bypass")){
-                player.sendMessage(format(getFormattedString("wordgame.error.multiple_words")));
+                player.sendMessage(getFormattedString("wordgame.error.multiple_words"));
                 event.setCancelled(true);
             }
         } else {
@@ -42,7 +42,7 @@ public class ChatListener implements Listener {
             boolean matchFound = matcher.find();
             if (!matchFound) {
                 if (!game.getWordChecker().isWord(word)) {
-                    player.sendMessage(format(getFormattedString("wordgame.error.not_a_word")));
+                    player.sendMessage(getFormattedString("wordgame.error.not_a_word"));
                     event.setCancelled(true);
                 } else {
                     String firstChar = String.valueOf(word.charAt(0));
@@ -60,16 +60,16 @@ public class ChatListener implements Listener {
                             game.setLastChar(lastChar);
                             game.getUsedWordList().add(word);
                         } else {
-                            player.sendMessage(format(getFormattedString("wordgame.error.already_used_word")));
+                            player.sendMessage(getFormattedString("wordgame.error.already_used_word"));
                             event.setCancelled(true);
                         }
                     } else {
-                        player.sendMessage(format(getFormattedString("wordgame.error.wrong_first_character")));
+                        player.sendMessage(getFormattedString("wordgame.error.wrong_first_character"));
                         event.setCancelled(true);
                     }
                 }
             } else {
-                player.sendMessage(format(getFormattedString("wordgame.error.numbers_in_word")));
+                player.sendMessage(getFormattedString("wordgame.error.numbers_in_word"));
                 event.setCancelled(true);
             }
         }

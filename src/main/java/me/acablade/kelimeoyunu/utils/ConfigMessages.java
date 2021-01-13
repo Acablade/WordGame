@@ -3,6 +3,8 @@ package me.acablade.kelimeoyunu.utils;
 import me.acablade.kelimeoyunu.KelimeOyunu;
 import me.acablade.kelimeoyunu.objects.MessageConfiguration;
 
+import static me.acablade.kelimeoyunu.utils.Colorizer.format;
+
 public class ConfigMessages {
 
     /**
@@ -12,22 +14,22 @@ public class ConfigMessages {
      */
     public static String getFormattedString(String text){
 
-        String config_text = MessageConfiguration.getCustomConfig().getString(text);
+        String configText = format(MessageConfiguration.getCustomConfig().getString(text));
+
 
         if(KelimeOyunu.getGame() !=  null){
-            config_text.
+            configText = configText.
                     replaceAll("%winner%",KelimeOyunu.getGame().getWinner()).
                     replaceAll("%lastChar%", KelimeOyunu.getGame().getLastChar()).
                     replaceAll("%language%", KelimeOyunu.getGame().getWordChecker().getLanguage()[0]);
         }else{
-            config_text.
-                    replaceAll("%winner%",DefaultConfigMessages.DEFAULT_WINNER).
+            configText = configText.
                     replaceAll("%lastChar%", DefaultConfigMessages.DEFAULT_LAST_CHAR).
                     replaceAll("%language%", DefaultConfigMessages.DEFAULT_LANGUAGE);
         }
 
 
-        return config_text;
+        return configText;
     }
 
 }

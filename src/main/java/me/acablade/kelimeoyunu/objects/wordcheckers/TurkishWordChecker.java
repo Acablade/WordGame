@@ -14,7 +14,7 @@ public class TurkishWordChecker extends WordChecker {
     @Override
     public boolean isWord(String word) throws IOException {
         //DIDNT YOINK THIS FROM ANYWHERE PROUD OF MYSELF
-        URL obj = new URL("https://sozluk.gov.tr/gts?ara="+word);
+        URL obj = new URL("https://sozluk.gov.tr/yazim?ara="+word);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);

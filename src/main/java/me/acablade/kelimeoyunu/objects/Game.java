@@ -21,7 +21,7 @@ public class Game {
     //Word counter hashmap to declare who is the winner
     //Used string instead of player or uuid because of cracked servers
     //its better to use uuid tho
-    private Map<String, Integer> wordCounter;
+    public Map<String, Integer> wordCounter;
 
     //How many second the game goes on for (integer might be a bad type for this lol) default: 30
     private final Integer lastingSeconds;
@@ -68,14 +68,14 @@ public class Game {
         if(this.isStarted) return false;
         this.isStarted = true;
         //Handle the finishing automatically here
-        String formattedCommand = gameFinishCommand.replaceAll("%winner%", getWinner()).replaceAll("%lastChar%",getLastChar());
-        String finishCommand = formattedCommand.startsWith("/") ? formattedCommand.substring(1) : formattedCommand;
         this.taskId = Bukkit.getScheduler().runTaskLaterAsynchronously(KelimeOyunu.getInstance(),() ->
         {
             //command thing
+            String formattedCommand = gameFinishCommand.replaceAll("%winner%", getWinner()).replaceAll("%lastChar%",getLastChar());
+            String finishCommand = formattedCommand.startsWith("/") ? formattedCommand.substring(1) : formattedCommand;
             Bukkit.getScheduler().runTask(KelimeOyunu.getInstance(), () -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), finishCommand));
-            //self destruct lol
-            KelimeOyunu.setGame(null);
+            //finish
+            finish();
 
         }, this.lastingSeconds * 20).getTaskId();
         return true;
@@ -86,17 +86,14 @@ public class Game {
      * @return Player that wins the game
      */
     public String getWinner(){
-        //Return if the game hasnt started yet
-        if(!isStarted) return null;
         int biggestNumber = 0;
         String playerName = MessageConfiguration.getCustomConfig().getString("wordgame.messages.no_one");
-        for(Map.Entry<String, Integer> entry: wordCounter.entrySet()){
+        for(Map.Entry<String, Integer> entry: this.wordCounter.entrySet()){
             if(entry.getValue() > biggestNumber){
                 biggestNumber = entry.getValue();
                 playerName = entry.getKey();
             }
         }
-
         return playerName;
     }
 
@@ -160,7 +157,7 @@ public class Game {
      * @param count the amount of words you want to add
      */
     public void setPlayer(Player p, int count){
-        wordCounter.put(p.getDisplayName(), count);
+        this.wordCounter.put(p.getDisplayName(), count);
     }
 
     /**

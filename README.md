@@ -15,14 +15,13 @@ Game where you try to find a new word that starts with the last character of the
 **DOES NOT SUPPORT PLACEHOLDER API YET**
 
 TODO:
-- [ ] Make commands fancy
 - [ ] PlaceholderAPI support
 
 FEATURES:
 
 - Word checking via API of Dictionary sites
 - Permissions
-- Commands (not fancy yet but will be in future)
+- Commands
 - API
 - Config
 
