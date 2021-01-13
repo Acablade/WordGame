@@ -1,13 +1,13 @@
 package me.acablade.kelimeoyunu;
 
-import me.acablade.kelimeoyunu.Commands.WordGameCommand;
-import me.acablade.kelimeoyunu.Listeners.ChatListener;
-import me.acablade.kelimeoyunu.Objects.Game;
-import me.acablade.kelimeoyunu.Objects.MessageConfiguration;
-import me.acablade.kelimeoyunu.Objects.WordCheckers.EnglishWordChecker;
-import me.acablade.kelimeoyunu.Objects.WordCheckers.TurkishWordChecker;
-import me.acablade.kelimeoyunu.Objects.WordCheckers.IWordChecker;
-import me.acablade.kelimeoyunu.Objects.WordCheckers.WordCheckerManager;
+import me.acablade.kelimeoyunu.commands.WordGameCommand;
+import me.acablade.kelimeoyunu.listeners.ChatListener;
+import me.acablade.kelimeoyunu.objects.Game;
+import me.acablade.kelimeoyunu.objects.MessageConfiguration;
+import me.acablade.kelimeoyunu.objects.wordcheckers.EnglishWordChecker;
+import me.acablade.kelimeoyunu.objects.wordcheckers.TurkishWordChecker;
+import me.acablade.kelimeoyunu.objects.wordcheckers.IWordChecker;
+import me.acablade.kelimeoyunu.objects.wordcheckers.WordCheckerManager;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,8 +20,8 @@ public final class KelimeOyunu extends JavaPlugin {
     //But the server will only have one game going only so i dont care lol
     private static Game game;
 
-    public static IWordChecker ENGLISH_WORD_CHECKER;
-    public static IWordChecker TURKISH_WORD_CHECKER;
+    public static IWordChecker englishWordChecker;
+    public static IWordChecker turkishWordChecker;
 
     public static WordCheckerManager wordCheckerManager;
 
@@ -32,8 +32,8 @@ public final class KelimeOyunu extends JavaPlugin {
         wordCheckerManager = new WordCheckerManager();
 
         //Register word checkers
-        TURKISH_WORD_CHECKER = wordCheckerManager.register(new TurkishWordChecker());
-        ENGLISH_WORD_CHECKER = wordCheckerManager.register(new EnglishWordChecker());
+        turkishWordChecker = wordCheckerManager.register(new TurkishWordChecker());
+        englishWordChecker = wordCheckerManager.register(new EnglishWordChecker());
 
         //Register listeners
         getServer().getPluginManager().registerEvents(new ChatListener(), this);

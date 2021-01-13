@@ -1,4 +1,4 @@
-package me.acablade.kelimeoyunu.Objects;
+package me.acablade.kelimeoyunu.objects;
 
 import me.acablade.kelimeoyunu.KelimeOyunu;
 import org.bukkit.configuration.InvalidConfigurationException;

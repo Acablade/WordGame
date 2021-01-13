@@ -1,4 +1,4 @@
-package me.acablade.kelimeoyunu.Objects.WordCheckers;
+package me.acablade.kelimeoyunu.objects.wordcheckers;
 
 import java.io.IOException;
 

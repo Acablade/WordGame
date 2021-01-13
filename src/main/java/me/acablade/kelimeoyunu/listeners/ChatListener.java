@@ -1,7 +1,7 @@
-package me.acablade.kelimeoyunu.Listeners;
+package me.acablade.kelimeoyunu.listeners;
 
 import me.acablade.kelimeoyunu.KelimeOyunu;
-import me.acablade.kelimeoyunu.Objects.Game;
+import me.acablade.kelimeoyunu.objects.Game;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static me.acablade.kelimeoyunu.Utils.Colorizer.format;
-import static me.acablade.kelimeoyunu.Utils.ConfigMessages.getFormattedString;
+import static me.acablade.kelimeoyunu.utils.Colorizer.format;
+import static me.acablade.kelimeoyunu.utils.ConfigMessages.getFormattedString;
 
 public class ChatListener implements Listener {
 

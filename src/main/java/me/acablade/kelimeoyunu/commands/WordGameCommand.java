@@ -1,9 +1,9 @@
-package me.acablade.kelimeoyunu.Commands;
+package me.acablade.kelimeoyunu.commands;
 
 import me.acablade.kelimeoyunu.KelimeOyunu;
-import me.acablade.kelimeoyunu.Objects.Game;
-import me.acablade.kelimeoyunu.Objects.MessageConfiguration;
-import me.acablade.kelimeoyunu.Objects.WordCheckers.IWordChecker;
+import me.acablade.kelimeoyunu.objects.Game;
+import me.acablade.kelimeoyunu.objects.MessageConfiguration;
+import me.acablade.kelimeoyunu.objects.wordcheckers.IWordChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,8 +14,8 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-import static me.acablade.kelimeoyunu.Utils.Colorizer.format;
-import static me.acablade.kelimeoyunu.Utils.ConfigMessages.getFormattedString;
+import static me.acablade.kelimeoyunu.utils.Colorizer.format;
+import static me.acablade.kelimeoyunu.utils.ConfigMessages.getFormattedString;
 
 public class WordGameCommand implements CommandExecutor, TabExecutor {
     @Override

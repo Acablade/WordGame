@@ -1,7 +1,7 @@
-package me.acablade.kelimeoyunu.Utils;
+package me.acablade.kelimeoyunu.utils;
 
 import me.acablade.kelimeoyunu.KelimeOyunu;
-import me.acablade.kelimeoyunu.Objects.MessageConfiguration;
+import me.acablade.kelimeoyunu.objects.MessageConfiguration;
 
 public class ConfigMessages {
 
@@ -15,11 +15,15 @@ public class ConfigMessages {
         String config_text = MessageConfiguration.getCustomConfig().getString(text);
 
         if(KelimeOyunu.getGame() !=  null){
-            assert config_text != null;
             config_text.
                     replaceAll("%winner%",KelimeOyunu.getGame().getWinner()).
                     replaceAll("%lastChar%", KelimeOyunu.getGame().getLastChar()).
                     replaceAll("%language%", KelimeOyunu.getGame().getWordChecker().getLanguage()[0]);
+        }else{
+            config_text.
+                    replaceAll("%winner%",DefaultConfigMessages.DEFAULT_WINNER).
+                    replaceAll("%lastChar%", DefaultConfigMessages.DEFAULT_LAST_CHAR).
+                    replaceAll("%language%", DefaultConfigMessages.DEFAULT_LANGUAGE);
         }
 
 

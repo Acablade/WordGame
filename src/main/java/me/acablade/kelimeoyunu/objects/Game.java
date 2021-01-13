@@ -1,7 +1,7 @@
-package me.acablade.kelimeoyunu.Objects;
+package me.acablade.kelimeoyunu.objects;
 
 import me.acablade.kelimeoyunu.KelimeOyunu;
-import me.acablade.kelimeoyunu.Objects.WordCheckers.IWordChecker;
+import me.acablade.kelimeoyunu.objects.wordcheckers.IWordChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

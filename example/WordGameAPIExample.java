@@ -1,5 +1,5 @@
 import me.acablade.kelimeoyunu.KelimeOyunu;
-import me.acablade.kelimeoyunu.Objects.WordCheckers.IWordChecker;
+import me.acablade.kelimeoyunu.objects.wordcheckers.IWordChecker;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;

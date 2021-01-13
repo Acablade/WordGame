@@ -1,4 +1,4 @@
-package me.acablade.kelimeoyunu.Utils;
+package me.acablade.kelimeoyunu.utils;
 
 import org.bukkit.ChatColor;
 
