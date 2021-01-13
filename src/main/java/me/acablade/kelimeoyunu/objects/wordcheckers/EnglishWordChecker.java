@@ -6,7 +6,7 @@ import java.net.URL;
 
 import static com.google.common.net.HttpHeaders.USER_AGENT;
 
-public class EnglishWordChecker implements IWordChecker {
+public class EnglishWordChecker extends WordChecker {
     @Override
     public boolean isWord(String word) throws IOException {
 

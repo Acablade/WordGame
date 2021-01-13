@@ -3,7 +3,7 @@ package me.acablade.kelimeoyunu.commands;
 import me.acablade.kelimeoyunu.KelimeOyunu;
 import me.acablade.kelimeoyunu.objects.Game;
 import me.acablade.kelimeoyunu.objects.MessageConfiguration;
-import me.acablade.kelimeoyunu.objects.wordcheckers.IWordChecker;
+import me.acablade.kelimeoyunu.objects.wordcheckers.WordChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -46,7 +46,7 @@ public class WordGameCommand implements CommandExecutor, TabExecutor {
                     if(KelimeOyunu.getGame()==null){
                         //again feel free to hit me up on discord to optimize this code
                         //it shouldnt do much problem since its only used in command
-                        for(IWordChecker wc: KelimeOyunu.wordCheckerManager.getWordCheckerList()){
+                        for(WordChecker wc: KelimeOyunu.wordCheckerManager.getWordCheckerList()){
                             for(String alias: wc.getLanguage()){
                                 if(args[1].equalsIgnoreCase(alias)){
                                     Game g = new Game(wc, getFormattedString("wordgame.command_on_finish"),null);
@@ -91,7 +91,7 @@ public class WordGameCommand implements CommandExecutor, TabExecutor {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> tabComplete = new ArrayList<>();
         if(args.length == 2){
-            for(IWordChecker wordChecker : KelimeOyunu.wordCheckerManager.getWordCheckerList()){
+            for(WordChecker wordChecker : KelimeOyunu.wordCheckerManager.getWordCheckerList()){
                 for(String aliases: wordChecker.getLanguage()){
                     if(aliases.startsWith(args[1])){
                         tabComplete.add(aliases);

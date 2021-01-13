@@ -5,7 +5,7 @@ import java.util.List;
 
 public class WordCheckerManager {
 
-    List<IWordChecker> IWordCheckerList;
+    List<WordChecker> IWordCheckerList;
 
 
     public WordCheckerManager(){
@@ -18,7 +18,7 @@ public class WordCheckerManager {
      * @param IWordChecker Word Checker that is going to be registered
      * @return Word checker so the dev can apply it to a variable
      */
-    public IWordChecker register(IWordChecker IWordChecker){
+    public WordChecker register(WordChecker IWordChecker){
         if(getWordCheckerList().contains(IWordChecker)) return null;
         getWordCheckerList().add(IWordChecker);
         return IWordChecker;
@@ -37,7 +37,7 @@ public class WordCheckerManager {
      * Unregisters the specified word checker
      * @param IWordChecker word checker that wanted to be removed
      */
-    public void unregister(IWordChecker IWordChecker){
+    public void unregister(WordChecker IWordChecker){
         if(!getWordCheckerList().contains(IWordChecker)) return;
         getWordCheckerList().remove(IWordChecker);
     }
@@ -46,7 +46,7 @@ public class WordCheckerManager {
      * Returns all registered word checkers
      * @return word checker list
      */
-    public List<IWordChecker> getWordCheckerList() {
+    public List<WordChecker> getWordCheckerList() {
         return IWordCheckerList;
     }
 }

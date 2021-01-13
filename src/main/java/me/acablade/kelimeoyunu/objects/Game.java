@@ -1,7 +1,7 @@
 package me.acablade.kelimeoyunu.objects;
 
 import me.acablade.kelimeoyunu.KelimeOyunu;
-import me.acablade.kelimeoyunu.objects.wordcheckers.IWordChecker;
+import me.acablade.kelimeoyunu.objects.wordcheckers.WordChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -10,7 +10,7 @@ import java.util.*;
 public class Game {
 
     //Word checking and i made that with abstract class to make it look cool B)
-    private IWordChecker IWordChecker;
+    private WordChecker IWordChecker;
 
     // Command that runs when the game finishes
     private final String gameFinishCommand;
@@ -42,7 +42,7 @@ public class Game {
      * @param gameFinishCommand Command that runs when the game finishes
      * @param lastingSeconds How many seconds the game will last
      */
-    public Game(IWordChecker IWordChecker, String gameFinishCommand, Integer lastingSeconds){
+    public Game(WordChecker IWordChecker, String gameFinishCommand, Integer lastingSeconds){
         //init variables
         this.gameFinishCommand = gameFinishCommand;
         this.wordCounter = new HashMap<>();
@@ -134,7 +134,7 @@ public class Game {
      * Get word checker
      * @return word checker of the specified language
      */
-    public IWordChecker getWordChecker(){
+    public WordChecker getWordChecker(){
         return this.IWordChecker;
     }
 

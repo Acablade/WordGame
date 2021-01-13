@@ -1,5 +1,5 @@
 import me.acablade.kelimeoyunu.KelimeOyunu;
-import me.acablade.kelimeoyunu.objects.wordcheckers.IWordChecker;
+import me.acablade.kelimeoyunu.objects.wordcheckers.WordChecker;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.List;
 
 public class WordGameAPIExample extends JavaPlugin {
 
-    IWordChecker wordChecker;
+    WordChecker wordChecker;
 
     @Override
     public void onEnable() {
@@ -17,7 +17,7 @@ public class WordGameAPIExample extends JavaPlugin {
 
 
     //Create the word checker class here (you can create independent class aswell, for showing purposes i used inner class)
-    private static class ExampleWordChecker implements IWordChecker {
+    private static class ExampleWordChecker extends WordChecker {
         List<String> wordList;
         public ExampleWordChecker(){
             this.wordList = new ArrayList<>();

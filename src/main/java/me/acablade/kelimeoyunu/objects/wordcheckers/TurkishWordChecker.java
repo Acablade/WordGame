@@ -10,7 +10,7 @@ import java.net.URL;
 
 import static com.google.common.net.HttpHeaders.USER_AGENT;
 
-public class TurkishWordChecker implements IWordChecker {
+public class TurkishWordChecker extends WordChecker {
     @Override
     public boolean isWord(String word) throws IOException {
         //DIDNT YOINK THIS FROM ANYWHERE PROUD OF MYSELF
