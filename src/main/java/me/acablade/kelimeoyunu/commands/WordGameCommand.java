@@ -91,13 +91,20 @@ public class WordGameCommand implements CommandExecutor, TabExecutor {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> tabComplete = new ArrayList<>();
         if(args.length == 2){
-            for(WordChecker wordChecker : KelimeOyunu.wordCheckerManager.getWordCheckerList()){
-                for(String aliases: wordChecker.getLanguage()){
-                    if(aliases.startsWith(args[1])){
-                        tabComplete.add(aliases);
+            if(args[0].equalsIgnoreCase("start")){
+                for(WordChecker wordChecker : KelimeOyunu.wordCheckerManager.getWordCheckerList()){
+                    for(String aliases: wordChecker.getLanguage()){
+                        if(aliases.startsWith(args[1])){
+                            tabComplete.add(aliases);
+                        }
                     }
                 }
             }
+        }
+        if(args.length == 1){
+            tabComplete.add("start");
+            tabComplete.add("help");
+            tabComplete.add("reload");
         }
 
         return tabComplete;
