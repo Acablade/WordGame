@@ -15,7 +15,7 @@ public class ConfigMessages {
     public static String getFormattedString(String text){
 
         String configText = format(MessageConfiguration.getCustomConfig().getString(text));
-
+        configText = configText.replaceAll("/n", System.lineSeparator());
 
         if(KelimeOyunu.getGame() !=  null){
             configText = configText.
