@@ -34,4 +34,4 @@ It takes the word written in chat and sends a GET request to a dictionary api an
 
 **Example file isnt included in project build**
 
-Discord: oz#4795 if you want to talk to me about this project.
+Discord: OzCatsy#4795 if you want to talk to me about this project.
