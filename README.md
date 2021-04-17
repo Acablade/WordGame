@@ -55,4 +55,4 @@ Discord: DaOz#4795 if you want to talk to me about this project.
 </dependency>
 ```
 
-See [JitPack](https://jitpack.io/#Acablade/WordGame) 
+See [JitPack](https://jitpack.io/#Acablade/WordGame) . 
