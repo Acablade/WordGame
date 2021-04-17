@@ -34,4 +34,25 @@ It takes the word written in chat and sends a GET request to a dictionary api an
 
 **Example file isnt included in project build**
 
-Discord: oz#4795 if you want to talk to me about this project.
+Discord: DaOz#4795 if you want to talk to me about this project.
+
+## Maven Repository
+
+**Repository**:
+```
+<repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+</repository>
+```
+
+**Dependency (type latest version in for version)**
+```
+<dependency>
+    <groupId>com.github.Acablade</groupId>
+    <artifactId>WordGame</artifactId>
+    <version></version>
+</dependency>
+```
+
+See [JitPack](https://jitpack.io/#Acablade/WordGame) 
