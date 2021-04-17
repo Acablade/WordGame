@@ -54,5 +54,6 @@ Discord: DaOz#4795 if you want to talk to me about this project.
     <version></version>
 </dependency>
 ```
+[![](https://jitpack.io/v/Acablade/WordGame.svg)](https://jitpack.io/#Acablade/WordGame)
 
-See [JitPack](https://jitpack.io/#Acablade/WordGame) . 
+See [JitPack](https://jitpack.io/#Acablade/WordGame)
